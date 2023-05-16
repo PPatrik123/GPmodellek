@@ -210,6 +210,22 @@ u_prob <- function(x, m, s)
 	}
 }
 
+expReg <- function(X,Y){
+  n = length(X);
+  Z = log(Y, base=exp(1));
+  SumZX = sum(Z*X);
+  SumZ = sum(Z);
+  SumX = sum(X);
+  SumX2 = sum(X^2);
+  
+  a1 = (n*SumZX - SumZ*SumX) / (n*SumX2 - SumX^2);
+  a0 = mean(Z) - a1*mean(X);
+  a = exp(a0);
+  b = a1;
+  plot(X,Y);
+  lines(X,a*exp(b*X), col="blue");
+}
+
 
 
 
